@@ -24,6 +24,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -168,6 +169,10 @@ public class SmoothImageView extends PhotoView {
         if (getDrawable() == null) {
             return;
         }
+        
+        //防止转换失败
+        if (getDrawable() instanceof ColorDrawable) return;
+
         if (mBitmap == null || mBitmap.isRecycled()) {
             mBitmap = ((BitmapDrawable) getDrawable()).getBitmap();
         }
